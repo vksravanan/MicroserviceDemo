@@ -26,9 +26,6 @@ parameters:
   - name: releaseValuesFile
     type: string
     default: 
-  - name: sourceFolder
-    type: string
-    default:
 
 steps:
   - task: Tokenizer@0
@@ -39,8 +36,8 @@ steps:
   - task: CopyFiles@2
     displayName: 'Copy Files to:${{ parameters.artifactStagingDirectory }}/${{ parameters.artifactName }}'
     inputs:
-      SourceFolder: ${{ parameters.sourceFolder }}
-      Contents: values.release.yaml
+      SourceFolder: ${{ parameters.chartPath }}
+      Contents: values.yaml
       TargetFolder: '${{ parameters.artifactStagingDirectory }}/${{ parameters.artifactName }}'
 
   - task: HelmInstaller@0
